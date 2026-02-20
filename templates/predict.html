@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Predict wind energy output based on weather conditions using machine learning.">
+    <title>Wind Energy Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="header">
+        ⚡ Wind Turbine Energy Prediction Based on Weather Conditions
+    </div>
+
+    <div class="predict-container">
+        <!-- Left Section: Weather Conditions -->
+        <div class="weather-section">
+            <a href="/" class="back-link" id="back-home-link">← Back to Home</a>
+
+            <div class="section-title">🌤️ Check Weather Conditions</div>
+
+            <form action="/windapi" method="post" id="weather-form">
+                <div class="form-group">
+                    <input type="text" name="city" id="city-input" list="cities"
+                        placeholder="Enter city name (e.g., Delhi)" required value="{{ city if city else '' }}">
+                    <datalist id="cities">
+                        <option value="Agartala">
+                        <option value="Delhi">
+                        <option value="Mumbai">
+                        <option value="Chennai">
+                        <option value="Kolkata">
+                        <option value="Bangalore">
+                        <option value="Hyderabad">
+                        <option value="Jaipur">
+                        <option value="Lucknow">
+                        <option value="London">
+                        <option value="New York">
+                        <option value="Tokyo">
+                    </datalist>
+                </div>
+                <button type="submit" class="submit-btn" id="weather-submit-btn">🔍 CHECK WEATHER CONDITIONS</button>
+            </form>
+
+            {% if error %}
+            <div class="error-message">
+                ⚠️ {{ error }}
+            </div>
+            {% endif %}
+
+            {% if temp %}
+            <div class="weather-result">
+                <div class="section-title">📊 Weather Data{% if city %} for {{ city }}{% endif %}</div>
+
+                <div class="result-row">
+                    <span>🌡️ Temperature</span>
+                    <span>{{ temp }}</span>
+                </div>
+                <div class="result-row">
+                    <span>💧 Humidity</span>
+                    <span>{{ humid }}</span>
+                </div>
+                <div class="result-row">
+                    <span>🔽 Pressure</span>
+                    <span>{{ pressure }}</span>
+                </div>
+                <div class="result-row">
+                    <span>💨 Wind Speed</span>
+                    <span>{{ speed }}</span>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Right Section: Prediction -->
+        <div class="predict-section">
+            <div class="section-title">⚡ Predict Wind Energy</div>
+
+            <form action="/y_predict" method="post" id="predict-form">
+                <div class="form-group">
+                    <input type="text" name="theoretical_power" id="theoretical-power-input"
+                        placeholder="Theoretical Power in KWh" required
+                        value="{{ theoretical_power if theoretical_power else '' }}">
+                </div>
+                <div class="form-group">
+                    <input type="text" name="wind_speed" id="wind-speed-input" placeholder="Wind Speed in m/s" required
+                        value="{{ wind_speed if wind_speed else '' }}">
+                </div>
+
+                <button type="submit" class="submit-btn" id="predict-submit-btn">⚡ PREDICT ENERGY</button>
+            </form>
+
+            {% if prediction_text %}
+            <div class="prediction-result" id="prediction-result">
+                🎯 {{ prediction_text }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

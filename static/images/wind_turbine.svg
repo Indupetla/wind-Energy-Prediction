@@ -1,0 +1,112 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#16213e;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:0.1" />
+    </linearGradient>
+    <linearGradient id="poleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8D6E63" />
+      <stop offset="100%" style="stop-color:#A1887F" />
+    </linearGradient>
+    <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2b04a" />
+      <stop offset="100%" style="stop-color:#d4a03a" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="400" height="300" fill="url(#skyGrad)" rx="10"/>
+
+  <!-- Stars -->
+  <circle cx="50" cy="30" r="1.5" fill="#e2b04a" opacity="0.6">
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="120" cy="50" r="1" fill="#e2b04a" opacity="0.4">
+    <animate attributeName="opacity" values="0.2;0.7;0.2" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="280" cy="25" r="1.5" fill="#e2b04a" opacity="0.5">
+    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="340" cy="60" r="1" fill="#e2b04a" opacity="0.3">
+    <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="200" cy="15" r="1.2" fill="#e2b04a" opacity="0.5">
+    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.8s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- City Skyline -->
+  <g fill="#1a1a2e" opacity="0.7">
+    <rect x="30" y="245" width="35" height="55" rx="2" />
+    <rect x="70" y="225" width="45" height="75" rx="2" />
+    <rect x="120" y="255" width="28" height="45" rx="2" />
+    <rect x="155" y="235" width="40" height="65" rx="2" />
+    <rect x="200" y="260" width="65" height="40" rx="2" />
+    <rect x="280" y="240" width="30" height="60" rx="2" />
+    <rect x="315" y="250" width="50" height="50" rx="2" />
+  </g>
+
+  <!-- City windows (small lights) -->
+  <g fill="#e2b04a" opacity="0.4">
+    <rect x="40" y="255" width="4" height="4" rx="1" />
+    <rect x="50" y="265" width="4" height="4" rx="1" />
+    <rect x="80" y="235" width="4" height="4" rx="1" />
+    <rect x="90" y="250" width="4" height="4" rx="1" />
+    <rect x="100" y="265" width="4" height="4" rx="1" />
+    <rect x="165" y="245" width="4" height="4" rx="1" />
+    <rect x="175" y="260" width="4" height="4" rx="1" />
+    <rect x="290" y="255" width="4" height="4" rx="1" />
+    <rect x="325" y="265" width="4" height="4" rx="1" />
+    <rect x="340" y="275" width="4" height="4" rx="1" />
+  </g>
+
+  <!-- Wind Turbine 1 (Main) Pole -->
+  <rect x="145" y="100" width="10" height="200" fill="url(#poleGrad)" rx="3"/>
+
+  <!-- Wind Turbine 1 (Main) Blades -->
+  <g id="main-fan" transform="translate(150, 100)" filter="url(#glow)">
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="4s" repeatCount="indefinite"/>
+      <ellipse cx="0" cy="-50" rx="7" ry="50" fill="url(#bladeGrad)" opacity="0.9"/>
+      <ellipse cx="0" cy="-50" rx="7" ry="50" fill="url(#bladeGrad)" opacity="0.9" transform="rotate(120)"/>
+      <ellipse cx="0" cy="-50" rx="7" ry="50" fill="url(#bladeGrad)" opacity="0.9" transform="rotate(240)"/>
+      <circle cx="0" cy="0" r="8" fill="#e2b04a"/>
+    </g>
+  </g>
+
+  <!-- Wind Turbine 2 (Small, background) Pole -->
+  <rect x="305" y="165" width="6" height="135" fill="url(#poleGrad)" rx="2" opacity="0.5"/>
+
+  <!-- Wind Turbine 2 Blades -->
+  <g transform="translate(308, 165)" opacity="0.5">
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="5s" repeatCount="indefinite"/>
+      <ellipse cx="0" cy="-30" rx="4" ry="30" fill="url(#bladeGrad)" opacity="0.8"/>
+      <ellipse cx="0" cy="-30" rx="4" ry="30" fill="url(#bladeGrad)" opacity="0.8" transform="rotate(120)"/>
+      <ellipse cx="0" cy="-30" rx="4" ry="30" fill="url(#bladeGrad)" opacity="0.8" transform="rotate(240)"/>
+      <circle cx="0" cy="0" r="5" fill="#e2b04a"/>
+    </g>
+  </g>
+
+  <!-- Ground Line -->
+  <line x1="0" y1="300" x2="400" y2="300" stroke="#e2b04a" stroke-width="2" opacity="0.3"/>
+
+  <!-- Decorative wind lines -->
+  <g stroke="#e2b04a" stroke-width="1" opacity="0.2">
+    <line x1="20" y1="90" x2="80" y2="88">
+      <animate attributeName="x1" values="20;30;20" dur="3s" repeatCount="indefinite"/>
+    </line>
+    <line x1="30" y1="120" x2="100" y2="118">
+      <animate attributeName="x1" values="30;15;30" dur="4s" repeatCount="indefinite"/>
+    </line>
+    <line x1="310" y1="80" x2="380" y2="78">
+      <animate attributeName="x1" values="310;320;310" dur="3.5s" repeatCount="indefinite"/>
+    </line>
+  </g>
+</svg>
